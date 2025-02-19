@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vendre un article{% endblock %}
+
+{% block body %}
+    <h1>Vendre un article</h1>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {{ form_start(article) }}
+        {{ form_row(article.nom) }}
+        {{ form_row(article.description) }}
+        {{ form_row(article.prix) }}
+        {{ form_row(article.datePublication) }}
+        {{ form_row(article.image) }}
+
+        <button type="submit" class="btn btn-primary">Ajouter l'article</button>
+    {{ form_end(article) }}
+{% endblock %}
