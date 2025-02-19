@@ -14,15 +14,39 @@ body {
 header {
     background-color: #333;
     color: white;
-    padding: 20px;
+    padding: 60px;
+    position: relative;
+}
+
+.header-container {
     display: flex;
-    justify-content: space-between; /* Espace entre le titre et les liens */
+    justify-content: flex-end;
     align-items: center;
+    position: relative;
+}
+.header-content {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.header-content h1 {
+    margin: 0; /* Supprime la marge pour un meilleur alignement */
+    font-size: 2rem;
+}
+.header-content p {
+    margin-top: 5px; /* Petite marge entre le titre et le texte */
+    font-size: 1.2rem;
 }
 
 .auth-links {
     display: flex;
     gap: 15px;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .auth-links a {
