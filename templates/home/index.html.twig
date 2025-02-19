@@ -1,20 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil - Boutique de Chaussures{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/home/danyg/projets/symfony_project/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>/home/danyg/projets/symfony_project/templates/home/index.html.twig</code></li>
-    </ul>
-</div>
+    <link rel="stylesheet" href="/CSS/style.css">
+    <div class="container">
+        <header>
+            <h1>Bienvenue sur notre boutique de chaussures</h1>
+            <p>Découvrez nos dernières collections</p>
+        </header>
+        <section class="products">
+            <div class="product">
+                <img src="/images/sneaker1.jpg" alt="Chaussure 1">
+                <h2>Chaussure Sport</h2>
+                <p>Prix: 59.99€</p>
+            </div>
+            <div class="product">
+                <img src="/images/sneaker2.jpg" alt="Chaussure 2">
+                <h2>Chaussure Classique</h2>
+                <p>Prix: 79.99€</p>
+            </div>
+             <div class="product">
+                <img src="/images/sneaker3.jpg" alt="Chaussure 2">
+                <h2>Chaussure Classique</h2>
+                <p>Prix: 79.99€</p>
+            </div>
+             <div class="product">
+                <img src="/images/sneaker4.jpg" alt="Chaussure 2">
+                <h2>Chaussure Classique</h2>
+                <p>Prix: 79.99€</p>
+            </div>
+        </section>
+    </div>
 {% endblock %}
+
