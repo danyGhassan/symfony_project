@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Stock;
 use App\Form\ArticleType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,9 +25,11 @@ final class SellController extends AbstractController
             $entityManager->persist($article);
             $entityManager->flush();
             $this->addFlash('success', 'article ajouté');
+            return $this->redirectToRoute('app_home');
         }
+        $articles = $entityManager->getRepository(Article::class)->findAll();
         return $this->render('sell/index.html.twig', [
-            'article' => $form->createView(),
+            'article' => $form,
         ]);
     }
 

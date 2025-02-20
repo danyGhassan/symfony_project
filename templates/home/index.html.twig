@@ -24,6 +24,12 @@
 
     </div>
 </header>
+        {% for message in app.flashes('success') %}
+        <!-- Pensez a customiser vos notifs ! -->
+            <p>
+                {{ message }}
+            </p>
+        {% endfor %}
         <section class="products">
             <div class="product">
                 <img src="/images/home.image/sneaker1.jpg" alt="Chaussure 1">
