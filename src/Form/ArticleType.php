@@ -17,14 +17,7 @@ class ArticleType extends AbstractType
             ->add('nom')
             ->add('description')
             ->add('prix')
-            ->add('datePublication', null, [
-                'widget' => 'single_text',
-            ])
             ->add('image')
-            ->add('auteur', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'id',
-            ])
         ;
     }
 
