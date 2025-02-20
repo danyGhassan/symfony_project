@@ -48,6 +48,17 @@ header {
     margin-top: 5px; /* Petite marge entre le titre et le texte */
     font-size: 1.2rem;
 }
+.logo {
+    position: absolute;
+    top: -50px;
+    left: 30px;
+}
+
+.logo img {
+    width: 300px;
+    height: auto;
+}
+
 
 .auth-links {
     display: flex;
@@ -57,7 +68,7 @@ header {
     top: 50%;
     transform: translateY(-50%);
 }
-    
+
 .auth-links a {
     color: white;
     text-decoration: none;
