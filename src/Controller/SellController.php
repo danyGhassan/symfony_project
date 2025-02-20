@@ -24,7 +24,7 @@ final class SellController extends AbstractController
             $this->addFlash('success', 'article ajouté');
         }
         return $this->render('sell/index.html.twig', [
-            'article' => $form,
+            'article' => $form->createView(),
         ]);
         # Creer ton form
         # handeRequest pour recup les infos du form
