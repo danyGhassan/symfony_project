@@ -15,27 +15,28 @@ body {
 }
 
 header {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #fe0606;
+    background: url('https://wallpapercave.com/wp/wp9764093.jpg') no-repeat center center fixed;
     color: white;
-    padding: 80px 0;
+    padding: 15px 0;
     text-align: center;
     z-index: 1000;
 }
 
 .header-container {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
-    position: relative;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+    width: 100%;
 }
 .header-content {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    flex-grow: 1;
     text-align: center;
 }
 
@@ -52,11 +53,11 @@ header {
     display: flex;
     gap: 15px;
     position: absolute;
-    right: 20px;
+    right: 50px;
     top: 50%;
     transform: translateY(-50%);
 }
-
+    
 .auth-links a {
     color: white;
     text-decoration: none;

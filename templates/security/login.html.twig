@@ -10,13 +10,24 @@
     <link rel="stylesheet" href="CSS/login.css">
 {% endblock %}
 
+
 {% block body %}
+<header class="header">
+    <div class="header-container">
+        <div class="auth-links">
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        </div>
+        <div class="header-content">
+            <h1>Bienvenue sur notre boutique de chaussures</h1>
+            <p>Découvrez nos dernières collections</p>
+        </div>
+    </div>
+</header>
+
     <div class="d-flex justify-content-center align-items-center vh-100">
         <div class="p-4 bg-light rounded shadow text-center" style="width: 350px;">
-            <!-- Logo -->
-            <div class=".logo">
-                <img src="images/login.image/ShopTaPaire.jpg" alt="Logo" style="width: 80px;">
-            </div>
+            
 
             <h1 class="h3 mb-3">Connexion</h1>
 
