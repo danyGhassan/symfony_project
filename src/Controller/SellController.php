@@ -19,6 +19,8 @@ final class SellController extends AbstractController
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $article->setAuteur($this->getUser());
+            $article->setDatePublication(new \DateTimeImmutable());
             $entityManager->persist($article);
             $entityManager->flush();
             $this->addFlash('success', 'article ajouté');
@@ -26,14 +28,6 @@ final class SellController extends AbstractController
         return $this->render('sell/index.html.twig', [
             'article' => $form->createView(),
         ]);
-        # Creer ton form
-        # handeRequest pour recup les infos du form
-        # if validation/submit 
-        #   assigner l'auteur a l'utilisateur actuel (this get user)
-        #   persister ton entité
-        #   flush la bdd
-        #   message de confirmation (addFlash symfony)
-        # fin de if 
     }
 
 
