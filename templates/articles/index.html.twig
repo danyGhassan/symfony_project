@@ -11,7 +11,7 @@
                 <img src="{{ article.image }}" alt="{{ article.nom }}" style="max-width: 300px; height: auto;">
                 <strong>{{ article.nom }}</strong> - {{ article.prix }} €
                 <p>{{ article.description }}</p>
-                <a href="{{ path('sell_show', { id: article.id }) }}">Voir l'article</a>
+                <p>--------------</p>
             </li>
         {% else %}
             <li>Aucun article disponible.</li>
