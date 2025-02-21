@@ -56,6 +56,16 @@
         margin-top: 5px; /* Petite marge entre le titre et le texte */
         font-size: 1.2rem;
     }
+    .logo {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }
+    
+    .logo img {
+        width: 300px;
+        height: auto;
+    }
     .auth-links {
         display: flex;
         gap: 15px;
