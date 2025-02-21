@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Stock;
+use App\Entity\User;
 use App\Form\ArticleType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,10 +29,24 @@ final class SellController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
         $articles = $entityManager->getRepository(Article::class)->findAll();
+        $stock= $entityManager->getRepository(Stock::class)->findAll();
         return $this->render('sell/index.html.twig', [
             'article' => $form,
         ]);
     }
 
+    #[Route('/account', name: 'sell_show')]
+    public function index(EntityManagerInterface $entityManager): Response
+    {
 
+        //recup l'utilisateur
+        $user = $entityManager->getRepository(User::class)->find($this->getUser());
+
+        $articles = $user->getArticles();
+
+        // Passer l'article à Twig
+        return $this->render('sell/index.html.twig', [
+            'articles' => $articles,
+        ]);
+    }   
 }
