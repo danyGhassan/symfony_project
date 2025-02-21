@@ -8,6 +8,16 @@ body {
     font-family: Arial, sans-serif;
 }
 
+.logo {
+    position: absolute;
+    top: 50px;
+    left: 30px;
+}
+
+.logo img {
+width: 300px;
+margin-bottom: 10px;
+}
 .container {
     width: 80%;
     margin: auto;
@@ -48,17 +58,6 @@ header {
     margin-top: 5px; /* Petite marge entre le titre et le texte */
     font-size: 1.2rem;
 }
-.logo {
-    position: absolute;
-    top: -50px;
-    left: 30px;
-}
-
-.logo img {
-    width: 300px;
-    height: auto;
-}
-
 
 .auth-links {
     display: flex;

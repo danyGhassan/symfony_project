@@ -7,6 +7,17 @@
         height: 100vh;
         font-family: Arial, sans-serif;
     }
+    
+    .logo {
+        position: absolute;
+        top: 50px;
+        left: 30px;
+    }
+    
+    .logo img {
+  width: 300px;
+  margin-bottom: 10px;
+}
     .container {
         width: 80%;
         margin: auto;

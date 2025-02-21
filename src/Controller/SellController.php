@@ -28,8 +28,7 @@ final class SellController extends AbstractController
             $this->addFlash('success', 'article ajouté');
             return $this->redirectToRoute('app_home');
         }
-        $articles = $entityManager->getRepository(Article::class)->findAll();
-        $stock= $entityManager->getRepository(Stock::class)->findAll();
+
         return $this->render('sell/index.html.twig', [
             'article' => $form,
         ]);
