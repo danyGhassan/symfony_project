@@ -4,7 +4,20 @@
 
 {% block body %}
     <h1>Bienvenue, {{ user.username }} !</h1>
-    <p>Mes infos : Email : {{ user.email }}, Username : {{ user.username }}, Solde : {{ user.solde }}€</p>
+
+    <div>
+        {% if user.photo %}
+            <img src="{{ user.photo }}" alt="Photo de profil" style="width: 150px; height: 150px; border-radius: 50%;">
+        {% else %}
+            <p>Aucune photo de profil</p>
+        {% endif %}
+    </div>
+
+    <p>
+        <strong>Email :</strong> {{ user.email }} <br>
+        <strong>Nom d'utilisateur :</strong> {{ user.username }} <br>
+        <strong>Solde :</strong> {{ user.solde }}€
+    </p>
 
     {% for message in app.flashes('success') %}
         <div style="color: green;">{{ message }}</div>
@@ -15,6 +28,7 @@
         {{ form_row(form.email) }}
         {{ form_row(form.username) }}
         {{ form_row(form.solde) }}
+        {{ form_row(form.photo) }}
         {{ form_row(form.save) }}
     {{ form_end(form) }}
 
@@ -28,14 +42,18 @@
                     <strong>{{ article.nom }}</strong> -
                     <p>{{ article.description|default('Pas de description') }}</p>
                     <p><strong>Prix :</strong> {{ article.prix }} €</p>
+                    
                     {% if article.image %}
-                        <img src="{{ article.image }}" alt="{{ article.nom }}" style="max-width: 300px; height: auto;">
+                        <a href="{{ path('app_account_article', { id: article.id }) }}">
+                            <img src="{{ article.image }}" alt="{{ article.nom }}" style="max-width: 300px; height: auto;">
+                        </a>
                     {% endif %}
-                    Publié le {{ article.datePublication|date('d/m/Y') }}
+
+                    <p>Publié le {{ article.datePublication|date('d/m/Y') }}</p>
                 </li>
             {% endfor %}
         </ul>
-    {% endif %}
+        {% endif %}
 
     <a href="{{ path('app_logout') }}">Se déconnecter</a>
 {% endblock %}

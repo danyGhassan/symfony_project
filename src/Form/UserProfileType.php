@@ -25,6 +25,10 @@ class UserProfileType extends AbstractType
             ->add('solde', IntegerType::class, [
                 'label' => 'Solde',
             ])
+            ->add('photo', TextType::class, [
+                'label' => 'Lien de la photo de profil',
+                'required' => false,
+            ])
             ->add('save', SubmitType::class, [
                 'label' => 'Mettre à jour',
             ]);

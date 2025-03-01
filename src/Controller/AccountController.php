@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
 use App\Entity\User;
 use App\Form\UserProfileType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -40,4 +41,20 @@ final class AccountController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    #[Route('/account/{id}', name: 'app_account_article')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    public function showArticle(int $id, EntityManagerInterface $entityManager): Response
+    {
+        $article = $entityManager->getRepository(Article::class)->find($id);
+
+        if (!$article) {
+            throw $this->createNotFoundException('Article non trouvé.');
+        }
+
+        return $this->render('account/show_article.html.twig', [
+            'article' => $article,
+        ]);
+    }
+
 }
