@@ -1,21 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ArticlesController!{% endblock %}
+{% block title %}Liste des Articles{% endblock %}
 
 {% block body %}
 <h1>Liste des Articles</h1>
 
-    <ul>
-        {% for article in articles %}
-            <li>
+<ul>
+    {% for article in articles %}
+        <li>
+            <!-- Lien cliquable pour chaque article -->
+            <a href="{{ path('app_article_detail', {'id': article.id}) }}">
                 <img src="{{ article.image }}" alt="{{ article.nom }}" style="max-width: 300px; height: auto;">
                 <strong>{{ article.nom }}</strong> - {{ article.prix }} €
                 <p>{{ article.description }}</p>
-                <p>--------------</p>
-            </li>
-        {% else %}
-            <li>Aucun article disponible.</li>
-        {% endfor %}
-    </ul>
-    
+            </a>
+            <p>--------------</p>
+        </li>
+    {% else %}
+        <li>Aucun article disponible.</li>
+    {% endfor %}
+</ul>
+
 {% endblock %}
