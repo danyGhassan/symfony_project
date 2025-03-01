@@ -3,24 +3,35 @@
 {% block title %}Mon compte{% endblock %}
 
 {% block body %}
+    <h1>Bienvenue, {{ user.username }} !</h1>
+    <p>Mes infos : Email : {{ user.email }}, Username : {{ user.username }}, Solde : {{ user.solde }}€</p>
+
+    {% for message in app.flashes('success') %}
+        <div style="color: green;">{{ message }}</div>
+    {% endfor %}
+
+    <h2>Modifier mes informations</h2>
+    {{ form_start(form) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.username) }}
+        {{ form_row(form.solde) }}
+        {{ form_row(form.save) }}
+    {{ form_end(form) }}
 
     <h2>Mes articles</h2>
-
     {% if articles is empty %}
         <p>Aucun article publié.</p>
     {% else %}
         <ul>
             {% for article in articles %}
                 <li>
-                    <strong>{{ article.nom }}</strong> - Publié le {{ article.datePublication|date('d/m/Y') }}
+                    <strong>{{ article.nom }}</strong> -
                     <p>{{ article.description|default('Pas de description') }}</p>
                     <p><strong>Prix :</strong> {{ article.prix }} €</p>
-
                     {% if article.image %}
                         <img src="{{ article.image }}" alt="{{ article.nom }}" style="max-width: 300px; height: auto;">
                     {% endif %}
-
-                    <br>
+                    Publié le {{ article.datePublication|date('d/m/Y') }}
                 </li>
             {% endfor %}
         </ul>

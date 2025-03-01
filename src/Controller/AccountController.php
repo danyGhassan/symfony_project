@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\UserProfileType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
@@ -13,16 +15,29 @@ final class AccountController extends AbstractController
 {
     #[Route('/account', name: 'app_account')]
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
-        //recup l'utilisateur
-        $user = $entityManager->getRepository(User::class)->find($this->getUser());
+        // Récupération de l'utilisateur connecté
+        $user = $this->getUser();
 
-        $articles = $user->getArticles();
+        // Création du formulaire
+        $form = $this->createForm(UserProfileType::class, $user);
+        $form->handleRequest($request);
 
-        // Passer l'article à Twig
+        // Vérification si le formulaire est soumis et valide
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Votre profil a été mis à jour avec succès !');
+
+            return $this->redirectToRoute('app_account'); // Redirection après la mise à jour
+        }
+
         return $this->render('account/index.html.twig', [
-            'articles' => $articles,
+            'articles' => $user->getArticles(),
+            'user' => $user,
+            'form' => $form->createView(),
         ]);
     }
 }

@@ -36,20 +36,5 @@ final class SellController extends AbstractController
         return $this->render('sell/index.html.twig', [
             'article' => $form,
         ]);
-    }
-
-    #[Route('/account', name: 'sell_show')]
-    public function index(EntityManagerInterface $entityManager): Response
-    {
-
-        //recup l'utilisateur
-        $user = $entityManager->getRepository(User::class)->find($this->getUser());
-
-        $articles = $user->getArticles();
-
-        // Passer l'article à Twig
-        return $this->render('sell/index.html.twig', [
-            'articles' => $articles,
-        ]);
-    }   
+    } 
 }
