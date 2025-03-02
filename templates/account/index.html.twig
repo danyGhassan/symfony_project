@@ -44,7 +44,7 @@
                     <p><strong>Prix :</strong> {{ article.prix }} €</p>
                     
                     {% if article.image %}
-                        <a href="{{ path('app_account_article', { id: article.id }) }}">
+                        <a href="{{ path('article_modification', { id: article.id }) }}">
                             <img src="{{ article.image }}" alt="{{ article.nom }}" style="max-width: 300px; height: auto;">
                         </a>
                     {% endif %}

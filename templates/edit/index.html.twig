@@ -1,20 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello EditController!{% endblock %}
+{% block title %}{{ article.nom }}{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <h1>{{ article.nom }}</h1>
+    
+    {% if article.image %}
+        <img src="{{ article.image }}" alt="{{ article.nom }}" style="max-width: 500px; height: auto;">
+    {% endif %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <p><strong>Description :</strong> {{ article.description|default('Pas de description') }}</p>
+    <p><strong>Prix :</strong> {{ article.prix }} €</p>
+    <p>Publié le {{ article.datePublication|date('d/m/Y') }}</p>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/home/danyg/projets/symfony_project/src/Controller/EditController.php</code></li>
-        <li>Your template at <code>/home/danyg/projets/symfony_project/templates/edit/index.html.twig</code></li>
-    </ul>
-</div>
+    <a href="{{ path('app_account') }}">Retour à mon compte</a>
 {% endblock %}
