@@ -16,6 +16,9 @@
     <h2>Vendeur</h2>
     <p><strong>Nom d'utilisateur :</strong> {{ author.username }}</p>
     <p><strong>Email :</strong> <a href="mailto:{{ author.email }}">{{ author.email }}</a></p>
+    <form action="{{ path('app_cart_add', { id: article.id }) }}" method="POST">
+        <button type="submit">Ajouter au panier</button>
+    </form>
 
     <a href="{{ path('app_articles') }}">Retour à la liste des articles</a>
 {% endblock %}
