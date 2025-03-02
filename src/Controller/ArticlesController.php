@@ -23,8 +23,4 @@ final class ArticlesController extends AbstractController
         ]);
     }
 
-
-
-
-
 }
