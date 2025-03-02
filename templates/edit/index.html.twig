@@ -1,17 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ article.nom }}{% endblock %}
+{% block title %}Modifier l'article{% endblock %}
 
 {% block body %}
-    <h1>{{ article.nom }}</h1>
-    
-    {% if article.image %}
-        <img src="{{ article.image }}" alt="{{ article.nom }}" style="max-width: 500px; height: auto;">
-    {% endif %}
+    <h1>Modifier l'article</h1>
 
-    <p><strong>Description :</strong> {{ article.description|default('Pas de description') }}</p>
-    <p><strong>Prix :</strong> {{ article.prix }} €</p>
-    <p>Publié le {{ article.datePublication|date('d/m/Y') }}</p>
+    {% for message in app.flashes('success') %}
+        <div style="color: green;">{{ message }}</div>
+    {% endfor %}
 
-    <a href="{{ path('app_account') }}">Retour à mon compte</a>
+    {{ form_start(form) }}
+        {{ form_row(form.nom) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.prix) }}
+        {{ form_row(form.image) }}
+
+        <button type="submit">Mettre à jour</button> {# Bouton manuel au lieu de form_row(form.save) #}
+    {{ form_end(form) }}
+
+    <a href="{{ path('app_articles') }}">Retour à la liste des articles</a>
 {% endblock %}

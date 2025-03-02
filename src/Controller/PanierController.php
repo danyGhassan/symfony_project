@@ -12,7 +12,6 @@ final class PanierController extends AbstractController
 {
     #[Route('/panier', name: 'app_panier')]
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
-
     public function index(): Response
     {
         return $this->render('panier/index.html.twig', [
