@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.nom }} - Boutique de Chaussures{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" href="CSS/home.css">
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <img src="{{ article.image }}" class="card-img-top" alt="{{ article.nom }}">
+                    <div class="card-body">
+                        <h1 class="card-title">{{ article.nom }}</h1>
+                        <p class="card-text">{{ article.description }}</p>
+                        <p class="card-text"><strong>{{ article.prix }} €</strong></p>
+                        <a href="{{ path('homepage') }}" class="btn btn-primary">Retour à l'accueil</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
