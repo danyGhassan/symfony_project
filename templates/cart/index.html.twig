@@ -8,24 +8,29 @@
     {% if articles is empty %}
         <p>Votre panier est vide.</p>
     {% else %}
+        <p><strong>Votre solde actuel :</strong> {{ app.user.solde }} €</p>
+
         <ul>
             {% for article in articles %}
-                <li>
-                    <strong>{{ article.nom }}</strong> - {{ article.prix }} €
-                    <p>{{ article.description }}</p>
+                <li style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
+                    <img src="{{article.image }}" alt="Image de {{ article.nom }}" width="80" height="80" style="border-radius: 8px; object-fit: cover;">
+
+                    <div>
+                        <strong>{{ article.nom }}</strong> - {{ article.prix }} €
+                        <p>{{ article.description }}</p>
                     
-                    <form action="{{ path('app_cart_update', {id: article.id, quantity: cart[article.id] + 1}) }}" method="post">
-                        <button type="submit">Augmenter la quantité</button>
-                    </form>
+                        <form action="{{ path('app_cart_update', {id: article.id, quantity: cart[article.id] + 1}) }}" method="post">
+                            <button type="submit">Augmenter la quantité</button>
+                        </form>
                     
-                    <form action="{{ path('app_cart_update', {id: article.id, quantity: cart[article.id] - 1}) }}" method="post">
-                        <button type="submit">Diminuer la quantité</button>
-                    </form>
+                        <form action="{{ path('app_cart_update', {id: article.id, quantity: cart[article.id] - 1}) }}" method="post">
+                            <button type="submit">Diminuer la quantité</button>
+                        </form>
                     
-                    <form action="{{ path('app_cart_remove', {id: article.id}) }}" method="post">
-                        <button type="submit">Supprimer</button>
-                    </form>
-                    
+                        <form action="{{ path('app_cart_remove', {id: article.id}) }}" method="post">
+                            <button type="submit">Supprimer</button>
+                        </form>
+                    </div>
                 </li>
             {% endfor %}
         </ul>
@@ -37,7 +42,7 @@
                 <button type="submit">Passer la commande</button>
             </form>
         {% else %}
-            <p>Votre solde est insuffisant pour passer la commande.</p>
+            <p style="color: red;"><strong>Votre solde est insuffisant pour passer la commande.</strong></p>
         {% endif %}
     {% endif %}
 
