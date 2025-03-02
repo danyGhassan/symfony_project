@@ -18,6 +18,7 @@ final class DetailController extends AbstractController
     public function showArticle(int $id, EntityManagerInterface $entityManager): Response
     {
         $article = $entityManager->getRepository(Article::class)->find($id);
+        $author = $article->getAuteur();
 
         if (!$article) {
             throw $this->createNotFoundException('Article non trouvé.');
@@ -25,6 +26,7 @@ final class DetailController extends AbstractController
 
         return $this->render('detail/index.html.twig', [
             'article' => $article,
+            'author' => $author,
         ]);
     }
 }
