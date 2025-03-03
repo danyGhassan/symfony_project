@@ -21,7 +21,7 @@ final class AdminController extends AbstractController
 
         return $this->render('admin/index.html.twig', [
             'articles' => $articles,
-            'users' => $users, // Correction ici
+            'users' => $users, 
         ]);
     }
 
@@ -34,7 +34,7 @@ final class AdminController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_admin'); // Correction ici
+        return $this->redirectToRoute('app_admin'); 
     }
 
     #[Route('/admin/user/delete/{id}', name: 'admin_delete_user')]
@@ -46,6 +46,6 @@ final class AdminController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_admin'); // Correction ici
+        return $this->redirectToRoute('app_admin'); 
     }
 }
