@@ -23,19 +23,18 @@ final class EditController extends AbstractController
             throw $this->createNotFoundException('Article non trouvé.');
         }
 
-        // Créer le formulaire
+        
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
-        // Vérifier si le formulaire est soumis et valide
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($article);
             $entityManager->flush();
 
-            // Message de succès
             $this->addFlash('success', 'L\'article a été mis à jour avec succès.');
 
-            // Rediriger vers la page de l'article modifié (ou autre)
+            
             return $this->redirectToRoute('app_account');
         }
 

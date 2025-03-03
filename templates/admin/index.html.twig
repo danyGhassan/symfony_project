@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord Admin{% endblock %}
+
+{% block body %}
+    <h1>Tableau de Bord Administrateur</h1>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+
+    <h2>📌 Liste des Articles</h2>
+    {% if articles is empty %}
+        <p>Aucun article disponible.</p>
+    {% else %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Image</th>
+                    <th>Nom</th>
+                    <th>Prix</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for article in articles %}
+                    <tr>
+                        <td>{{ article.id }}</td>
+                        <td><img src="{{ asset(article.image) }}" alt="Image" width="50"></td>
+                        <td>{{ article.nom }}</td>
+                        <td>{{ article.prix }} €</td>
+                        <td>
+                            <a href="{{ path('admin_delete_article', { id: article.id }) }}" 
+                               onclick="return confirm('Voulez-vous vraiment supprimer cet article ?')">
+                                🗑 Supprimer
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    <h2>👥 Liste des Utilisateurs</h2>
+    {% if users is empty %}
+        <p>Aucun utilisateur trouvé.</p>
+    {% else %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Rôle</th>
+                    <th>Solde</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.roles|join(', ') }}</td>
+                        <td>{{ user.solde }} €</td>
+                        <td>
+                            {% if 'ROLE_ADMIN' not in user.roles %}
+                                <a href="{{ path('admin_delete_user', { id: user.id }) }}" 
+                                   onclick="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?')">
+                                    🗑 Supprimer
+                                </a>
+                            {% else %}
+                                (Admin)
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}
