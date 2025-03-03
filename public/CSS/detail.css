@@ -1,0 +1,85 @@
+/* Variables CSS */
+:root {
+    --background-image: url('https://wallpapercave.com/wp/wp9764093.jpg');
+    --primary-color: #e74c3c;
+    --secondary-color: #f39c12;
+    --link-color: #3498db;
+    --link-hover-color: #2980b9;
+    --container-bg: rgba(255, 255, 238, 0.8);
+    --text-color: #fff;
+}
+
+/* General Styles */
+body {
+    background: var(--background-image) no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Roboto', sans-serif;
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background: var(--container-bg);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(190, 187, 187, 0.3);
+    width: 90%;
+    max-width: 800px;
+    text-align: center;
+    position: relative; /* Ajouté pour positionner le logo */
+}
+
+.logo {
+    position: absolute; /* Positionne le logo */
+    top: 20px; /* Ajustez la distance du haut */
+    right: 20px; /* Ajustez la distance de la droite */
+}
+
+.logo-image {
+    width: 100px; /* Ajustez la taille du logo */
+    height: auto; /* Assurez-vous que la hauteur s'ajuste proportionnellement */
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+}
+
+.product-image {
+    width: auto; /* Permet à l'image de garder ses proportions */
+    max-width: 150px; /* Réduit la taille maximale de l'image du produit */
+    height: auto; /* Assure que la hauteur s'ajuste proportionnellement */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.product-image:hover {
+    transform: scale(1.05);
+}
+
+.details {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+strong {
+    color: var(--primary-color);
+}
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px
+}

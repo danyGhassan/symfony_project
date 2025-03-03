@@ -1,24 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des Articles{% endblock %}
+{% block title %}Accueil - Boutique de Chaussures{% endblock %}
+
+ 
 
 {% block body %}
-<h1>Liste des Articles</h1>
 
-<ul>
-    {% for article in articles %}
-        <li>
-            <!-- Lien cliquable pour chaque article -->
-            <a href="{{ path('app_article_detail', {'id': article.id}) }}">
-                <img src="{{ article.image }}" alt="{{ article.nom }}" style="max-width: 300px; height: auto;">
-                <strong>{{ article.nom }}</strong> - {{ article.prix }} €
-                <p>{{ article.description }}</p>
-            </a>
-            <p>--------------</p>
-        </li>
-    {% else %}
-        <li>Aucun article disponible.</li>
+<link rel="stylesheet" href="CSS/article.css">
+
+    <h1>Derniers articles</h1>
+ 
+    <div class="row">
+        {% for article in articles %}
+            <div class="col-md-3">
+                <a href="{{ path('app_article_detail', {'id': article.id}) }}">
+                    <div class="card mb-3">
+                        
+                        <img src="{{ article.image }}" class="card-img-top" alt="{{ article.nom }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ article.nom }}</h5>
+                            <p class="card-text">{{ article.description }}</p>
+                            <p class="card-text"><strong>{{ article.prix }} €</strong></p>
+
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% else %}
+            <p>Aucun article disponible.</p>
+        {% endfor %}
+    </div>
+    {% for message in app.flashes('success') %}
+    <!-- Pensez a customiser vos notifs ! -->
+        <p>
+            {{ message }}
+        </p>
     {% endfor %}
-</ul>
 
 {% endblock %}

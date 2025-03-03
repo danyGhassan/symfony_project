@@ -3,22 +3,31 @@
 {% block title %}Détails de l'article{% endblock %}
 
 {% block body %}
-    <h1>{{ article.nom }}</h1>
+<link rel="stylesheet" href="/CSS/detail.css">
 
+<div class="container">
+    <div class="logo">
+        <img src="/path/to/your/logo.png" alt="Logo" class="logo-image"> <!-- Remplacez par le chemin de votre logo -->
+    </div>
+    
+    <h1>{{ article.nom }}</h1>
+    
     <div>
-        <img src="{{ article.image }}" alt="{{ article.nom }}" style="max-width: 500px; height: auto;">
+        <img class="product-image" src="{{ article.image }}" alt="{{ article.nom }}">
     </div>
 
     <p><strong>Description :</strong> {{ article.description }}</p>
     <p><strong>Prix :</strong> {{ article.prix }} €</p>
     <p><strong>Publié le :</strong> {{ article.datePublication|date('d/m/Y') }}</p>
-
+    
     <h2>Vendeur</h2>
     <p><strong>Nom d'utilisateur :</strong> {{ author.username }}</p>
     <p><strong>Email :</strong> <a href="mailto:{{ author.email }}">{{ author.email }}</a></p>
+    
     <form action="{{ path('app_cart_add', { id: article.id }) }}" method="POST">
         <button type="submit">Ajouter au panier</button>
     </form>
-
-    <a href="{{ path('app_articles') }}">Retour à la liste des articles</a>
+    
+    <a href="{{ path('app_articles') }}" class="back-link">Retour à la liste des articles</a>
+</div>
 {% endblock %}
